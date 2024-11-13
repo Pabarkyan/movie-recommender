@@ -1,0 +1,22 @@
+# Ignorar la carpeta de configuración del editor
+.vscode/
+
+# Ignorar todos los archivos .env en cualquier ubicación
+*.env
+
+# Ignorar la carpeta de datos en el back-end
+/backend/data/
+
+# Ignorar entorno virtual de Python (back-end)
+backend/venv/
+
+# Ignorar dependencias de Node.js (front-end)
+frontend/node_modules/
+
+# Ignorar archivos de compilación de front-end
+frontend/build/
+
+# Ignorar archivos y carpetas temporales y de caché
+*.log
+.idea/
+__pycache__/
