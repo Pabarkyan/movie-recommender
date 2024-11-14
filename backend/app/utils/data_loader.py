@@ -2,18 +2,34 @@ import pandas as pd
 import sys
 import os
 
-# simulamos que este archivo esta en la misma carpeta que config para que no haya errores en la importacion
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from services.recommender import MovieRecommender
 
-from config import FILE_PATH_MOVIES, FILE_PATH_RATING, MERGIN_ID
+# simulamos que este archivo esta en la misma carpeta que config para que no haya errores en la importacion
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from config import FILE_PATH_COMPLETED_DF
 
 
 def load_data():
-    # Cargar los datasets
-    movies = pd.read_csv(FILE_PATH_MOVIES)
-    ratings = pd.read_csv(FILE_PATH_RATING)
+    movies = pd.read_csv(FILE_PATH_COMPLETED_DF)
     
-    data = pd.merge(ratings, movies, on=MERGIN_ID)
-    return data
+    return movies 
 
-print(load_data())
+
+def example_for_debugging(movie_title='Toy Story (1995)'):
+    
+    # Cargar datos
+    data = load_data()
+    
+    # Crear instancia del recomendador
+    recommender = MovieRecommender(data)
+    recommendations = recommender.recommend(movie_title)
+
+    return recommendations
+
+def get_recommendations(title, recommendations_number):
+    data = load_data()
+
+    recommender = MovieRecommender(data)
+    recommendations = recommender.recommend(movie_title=title, num_recommendations=recommendations_number)
+
+    return recommendations  

@@ -20,3 +20,4 @@ frontend/build/
 *.log
 .idea/
 __pycache__/
+ 
