@@ -24,7 +24,7 @@ class MovieRecommender:
                 return f"No se encontró la película '{movie_title}' en el dataset."
                     
         else:
-            movie_idx = movie_idx[0] # index value, el primer indice encontrado
+            movie_idx = int(movie_idx[0]) # index value, el primer indice encontrado
         
         # Calcular similitud de coseno basada en géneros
         cosine_sim = cosine_similarity(self.genre_matrix[movie_idx], self.genre_matrix).flatten()
@@ -56,8 +56,7 @@ class MovieRecommender:
         if len(close_matches) == 0: # es decir devuelve una lista vacia
             return None
         
-        print(close_matches[0])
-        movie_idx = self.data[self.data['title'] == close_matches[0]].index[0]
+        movie_idx = int(self.data[self.data['title'] == close_matches[0]].index[0])
 
         return movie_idx
 

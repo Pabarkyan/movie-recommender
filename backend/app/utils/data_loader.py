@@ -1,6 +1,4 @@
 import pandas as pd
-import sys
-import os
 
 from services.recommender import MovieRecommender
 
@@ -33,3 +31,4 @@ def get_recommendations(title, recommendations_number):
     recommendations = recommender.recommend(movie_title=title, num_recommendations=recommendations_number)
 
     return recommendations  
+
