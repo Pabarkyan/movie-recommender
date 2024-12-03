@@ -15,6 +15,13 @@ router = APIRouter(
 @router.post("/register", status_code=status.HTTP_201_CREATED)
 async def create_user(user: UserCreate, db: db_dependency):
     existing_user = get_user_by_email(db=db, email=user.email)
+
+    if user.password != user.confirmed_password:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Confirmed password and password are different"
+        )
+
     if existing_user:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -88,3 +95,7 @@ async def refresh_token(request: RefreshTokenRequest, db: db_dependency):
         "token_type": "Bearer"
     }
 
+
+@router.get("/connection")
+async def testing_backend_connection():
+    return {"response": "Hola Mundo"}
