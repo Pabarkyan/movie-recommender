@@ -9,3 +9,15 @@ export interface AuthContextProps {
 export interface AuthContextProviderProps {
     children: ReactNode
 }
+
+export interface Movies {
+    title: string
+    rating: number
+    rating_count: number
+    genres: string
+}
+
+export interface SearchState {
+    title: string
+    number: number
+}
